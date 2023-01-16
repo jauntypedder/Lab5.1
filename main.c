@@ -11,10 +11,24 @@ int main()
   int step,N;
 
   FILE* input=fopen("input.txt", "r");
+    if (input == NULL){
+        printf("ERROR: input file was not opened!");
+        return 1;
+    }
   FILE* output=fopen("output.txt", "w");
-  FILE* binary=fopen("binary.txt", "w+b");
-  fscanf(input,"%lf %lf %d %lf", &x1, &x2, &step, &delta);
-
+    if (output == NULL){
+        printf("ERROR: output file was not opened!");
+        fclose(input);
+        return 2;
+    }
+  FILE* binary=fopen("binary.bin", "w+b");
+    if (binary == NULL){
+        printf("ERROR: binary file was not opened!");
+        fclose(input);
+        fclose(output);
+        return 3;
+    }
+  
   fgets(name,SIZE, input);
   fgets(surname,SIZE, input);
   fgets(group,SIZE, input);
